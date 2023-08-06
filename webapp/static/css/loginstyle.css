@@ -1,0 +1,25 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Handjet:wght@300;500&family=Kanit&family=Raleway:ital,wght@1,600;1,700&family=Teko:wght@400;500&display=swap');
+
+/* font-family: 'Handjet', cursive;
+font-family: 'Kanit', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Teko', sans-serif;*/
+/* .body{
+    background-color: rgb(8, 55, 93);
+} */
+ .navbar_text{
+    font-size: larger;
+    color: black;
+    letter-spacing: 2px;
+    font-family: 'Teko', sans-serif;  
+ 
+} 
+.navbar_text:hover{
+    color:rgb(124, 124, 124);
+}
+.nav-container{
+    margin-top: 10px;
+    background-color: bisque;
+}
+

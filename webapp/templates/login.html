@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/loginstyle.css'%}" />
+   
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-secondary ">
+      <div class="container" name="nav-container">
+        <a class="navbar-brand navbar_text" href="#">webapp</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link navbar_text" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link navbar_text" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link navbar_text" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link navbar_text"  href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+   
+    <a href="{% url 'admin_login_page' %}"><button class="btn btn-sm btn-primary">Admin Login</button></a>
+    <div class="container" name="login_container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <div class="card  shadow p-3 mb-5 bg-body-tertiary rounded">
+            <div class="card-header bg-subtle dark text-white">
+              <h4 class="text-center text-primary">Login</h4>
+            </div>
+            <div class="card-body">
+              <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  {% if messages %}
+                  <div class="text-danger d-flex justify-content-center mt-2">
+                    {% for message in messages%}
+                      {{message}}
+                    {%endfor%}  
+                  </div>
+                  {% endif %}
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    id="username"
+                    placeholder="Enter your username"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    id="password"
+                    placeholder="Enter your password"
+                  />
+                </div>
+                <!-- <div class="d-flex"> -->
+                  <div class=" d-flex col-12 justify-content-around">
+                   
+                    <button
+                      type="submit"
+                      class="btn btn-light btn-lg btn-outline-primary btn-border"
+                    >
+                      Login
+                    </button>
+                    <button
+                    type="submit"
+                    class="btn btn-light btn-lg btn-outline-primary btn-border"
+                  >
+                  Reset
+                  </button>
+                  </div>
+                <!-- </div> -->
+              </form>
+              <p class="text-center mt-3">
+                Don't have an account?
+                <a class="signin_link" href="{% url 'user_signup'%}"><button class="btn btn-light btn-outline-primary btn-sm">Sign Up</button></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

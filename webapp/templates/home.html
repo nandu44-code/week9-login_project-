@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/loginstyle.css'%}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'images/pexels-pixabay-36717.jpg'%}"
+    />
+  </head>
+  <body class="bg-light">
+    <nav class="navbar bg-secondary navbar-expand-lg navbar-primary">
+      <div class="container" name="nav-container">
+        <a class="navbar-brand navbar_text" href="#">webapp</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link navbar_text" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link navbar_text" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link navbar_text" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link navbar_text" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link navbar_text" href="{% url 'logout_page' %}"><button class="btn btn-sm btn-danger mr-1 ">Log out</button></a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
