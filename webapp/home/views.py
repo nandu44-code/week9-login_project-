@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.views.decorators.cache import cache_control
+
+
 # from adminpage import urls
 # Create your views here.
 
@@ -31,6 +33,7 @@ def signup(request):
             elif pass2==pass1:
                 my_user=User.objects.create_user(user_name,email_adress,pass1)
                 my_user.save()
+               
                 messages.success(request,"account created successfully") 
                 return redirect('user_login')
             else:
@@ -55,7 +58,7 @@ def login_user(request):
     if request.method=="POST":
         user_name=request.POST.get('username')
         user_password=request.POST.get('password')
-        user=authenticate(request,username=user_name,password=user_password)
+        user = authenticate(request,username=user_name,password=user_password)
        
         if user is not None:
             login(request,user)

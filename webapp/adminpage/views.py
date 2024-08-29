@@ -1,5 +1,4 @@
 from django.shortcuts import get_object_or_404, render,redirect
-from .models import Customers
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
@@ -32,7 +31,7 @@ def Adminpage_login(request):
                 messages.error(request,"sorry,Invalid credentials") 
                 return redirect('admin_login')
         else:
-            messages.error(request,"lsorry,login with admin credentials") 
+            messages.error(request,"sorry,login with admin credentials") 
             return redirect('admin_login')
 
     return render(request,'adminlogin.html')
@@ -42,15 +41,16 @@ def Adminpage_login(request):
 def Adminpage(request):
     if 'q' in request.GET:
         q=request.GET['q']
-        multiple_q=Q(Q(user_name__icontains=q) | Q(email__icontains=q))
-        customer=Customers.objects.filter(multiple_q)
+        multiple_q=Q(Q(username__icontains=q) | Q(email__icontains=q))
+        customer=User.objects.filter(multiple_q)
 
         context={
             "customers":customer,
         }
 
     else:
-        customer=Customers.objects.all()
+        customer=User.objects.all()
+        
 
         context={
             "customers":customer,
@@ -73,8 +73,8 @@ def add(request):
             if password == c_password:
                     my_user = User.objects.create_user(username=name, password=password, email=email)
                     my_user.save()
-                    customer=Customers( user_name=name,email=email)
-                    customer.save()
+                    #customer=Customers( user_name=name,email=email)
+                    #customer.save()
                     return redirect("admin_page")
             else:
                     messages.error(request, 'password not matching try again..')
@@ -91,10 +91,10 @@ def add(request):
     # return render(request,'adminDash.html') 
 
 def Edit(request):
-    customer=Customers.objects.all()
+    customer=User.objects.all()
 
     context={
-            "customers":customer,
+        "customers":customer,
         }
     return render(request,'adminDash.html') 
 
@@ -107,9 +107,9 @@ def Update(request,id):
         name=request.POST.get('name')
         email=request.POST.get('email')
 
-        customer=Customers(
+        customer=User(
           id=id,
-          user_name=name,
+          username=name,
           email=email
 
         )
@@ -120,10 +120,10 @@ def Update(request,id):
 @login_required(login_url='admin_login') 
 def User_Delete(request,id):
     if 'admin_name' in request.session:
-        user=user = User.objects.filter(id=id)
-        customer=get_object_or_404(Customers,id=id)
+        user= User.objects.filter(id=id)
         user.delete()
-        customer.delete()
+       
+        
         return redirect('admin_page')
     else:     
          return redirect('admin_login')

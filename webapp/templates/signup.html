@@ -56,13 +56,13 @@
             <div class="card-body">
               <form id="signup" action="" method="post">
                 {% csrf_token %}
-                {% if messages %}
-                <div class="text-danger d-flex justify-content-center mt-2">
-                  {% for message in messages%}
-                    {{message}}
-                  {%endfor%}  
-                </div>
-                {% endif %}
+                    {% if messages %}
+                      <div class="text-danger d-flex justify-content-center mt-2">
+                        {% for message in messages%}
+                          {{message}}
+                        {%endfor%}  
+                      </div>
+                    {% endif %}
                 <div class="form-group">
                   <label for="username">Username</label>
                   <input
@@ -204,9 +204,9 @@
       
         const isValid = validateSignup(username, email, password,password2);
       
-        if (!isValid) {
-          event.preventDefault(); // Prevent form submission if validation fails
-        }
+        // if (!isValid) {
+          //event.preventDefault(); // Prevent form submission if validation fails
+        //} 
       });
     
     </script>
